@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juragan Kentang — Investasi Terbaik di Sektor Agrikultur</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F7F3E8;
+      --brown: #3B2A14;
+      --earth: #7A5C35;
+      --gold: #C9922A;
+      --green: #3A6B35;
+      --light-green: #EAF3DE;
+      --white: #FDFAF3;
+      --text-muted: #6B5740;
+      --border: rgba(59,42,20,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--brown);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: rgba(247,243,232,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 900;
+      color: var(--brown);
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--earth);
+      font-size: 0.9rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--brown); color: var(--cream);
+      padding: 0.6rem 1.4rem; border-radius: 50px;
+      text-decoration: none; font-size: 0.9rem; font-weight: 500;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .nav-cta:hover { background: var(--gold); transform: scale(1.03); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 5% 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 50%, rgba(201,146,42,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(58,107,53,0.1) 0%, transparent 60%);
+    }
+    .hero-pattern {
+      position: absolute; right: -80px; top: 50%;
+      transform: translateY(-50%);
+      width: 520px; height: 520px; z-index: 0; opacity: 0.07;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 680px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--light-green); color: var(--green);
+      padding: 0.4rem 1rem; border-radius: 50px;
+      font-size: 0.8rem; font-weight: 500;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(58,107,53,0.2);
+    }
+    .hero-badge::before {
+      content: ''; width: 7px; height: 7px;
+      border-radius: 50%; background: var(--green);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 900; line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+    .hero-sub {
+      font-size: 1.15rem; color: var(--text-muted);
+      line-height: 1.7; max-width: 540px;
+      margin-bottom: 2.5rem; font-weight: 300;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .btn-primary {
+      background: var(--brown); color: var(--cream);
+      padding: 0.9rem 2rem; border-radius: 50px;
+      text-decoration: none; font-size: 1rem; font-weight: 500;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold); transform: translateY(-2px); }
+    .btn-outline {
+      border: 1.5px solid var(--earth); color: var(--earth);
+      padding: 0.9rem 2rem; border-radius: 50px;
+      text-decoration: none; font-size: 1rem; font-weight: 500;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--brown); color: var(--brown); background: rgba(59,42,20,0.05); }
+
+    /* STATS STRIP */
+    .stats-strip {
+      background: var(--brown);
+      padding: 2.5rem 5%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 1rem 1.5rem;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; font-weight: 900;
+      color: var(--gold);
+    }
+    .stat-label {
+      font-size: 0.85rem; color: rgba(247,243,232,0.7);
+      margin-top: 0.3rem;
+    }
+
+    /* SECTIONS */
+    section { padding: 6rem 5%; }
+    .section-label {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700; line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    .section-desc {
+      font-size: 1.05rem; color: var(--text-muted);
+      line-height: 1.75; max-width: 580px;
+      font-weight: 300;
+    }
+
+    /* WHY */
+    .why { background: var(--white); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .why-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .why-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(59,42,20,0.08); }
+    .why-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: var(--brown);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 1.2rem;
+    }
+    .why-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700; margin-bottom: 0.6rem;
+    }
+    .why-card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* PRODUCTS */
+    .products { background: var(--cream); }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .product-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .product-card:hover { transform: translateY(-4px); }
+    .product-img {
+      height: 160px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+    }
+    .product-img.p1 { background: linear-gradient(135deg, #F5E6C8, #EDD99B); }
+    .product-img.p2 { background: linear-gradient(135deg, #E8D5B5, #D4B87A); }
+    .product-img.p3 { background: linear-gradient(135deg, #EAF3DE, #C0DD97); }
+    .product-img.p4 { background: linear-gradient(135deg, #FEF3E2, #FAC775); }
+    .product-info { padding: 1.4rem; }
+    .product-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem;
+    }
+    .product-info p { font-size: 0.88rem; color: var(--text-muted); }
+    .product-tag {
+      display: inline-block; margin-top: 0.8rem;
+      background: var(--light-green); color: var(--green);
+      font-size: 0.75rem; font-weight: 500;
+      padding: 0.25rem 0.75rem; border-radius: 50px;
+    }
+
+    /* PELUANG */
+    .peluang { background: var(--white); }
+    .peluang-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 3.5rem;
+    }
+    @media (max-width: 768px) { .peluang-layout { grid-template-columns: 1fr; gap: 2rem; } }
+    .peluang-visual {
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 2.5rem;
+      border: 1px solid var(--border);
+    }
+    .bar-chart { display: flex; flex-direction: column; gap: 1.2rem; }
+    .bar-row { display: flex; flex-direction: column; gap: 6px; }
+    .bar-label {
+      display: flex; justify-content: space-between;
+      font-size: 0.85rem; color: var(--text-muted);
+    }
+    .bar-label strong { color: var(--brown); font-weight: 500; }
+    .bar-track {
+      height: 10px; background: rgba(59,42,20,0.08);
+      border-radius: 50px; overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%; border-radius: 50px;
+      background: var(--gold);
+      animation: grow 1.5s ease-out forwards;
+      transform-origin: left;
+    }
+    @keyframes grow { from { width: 0; } }
+    .peluang-points { display: flex; flex-direction: column; gap: 1.5rem; }
+    .peluang-point { display: flex; gap: 1rem; align-items: flex-start; }
+    .point-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0; margin-top: 6px;
+    }
+    .point-text h4 {
+      font-weight: 500; font-size: 1rem; margin-bottom: 0.3rem;
+    }
+    .point-text p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* INVESTASI */
+    .investasi { background: var(--brown); color: var(--cream); }
+    .investasi .section-label { color: var(--gold); }
+    .investasi h2 { color: var(--cream); }
+    .investasi .section-desc { color: rgba(247,243,232,0.7); }
+    .paket-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .paket-card {
+      background: rgba(247,243,232,0.06);
+      border: 1px solid rgba(247,243,232,0.15);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      transition: transform 0.2s;
+    }
+    .paket-card:hover { transform: translateY(-4px); }
+    .paket-card.featured {
+      border-color: var(--gold);
+      background: rgba(201,146,42,0.1);
+    }
+    .featured-badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--gold); color: var(--brown);
+      font-size: 0.75rem; font-weight: 500;
+      padding: 0.3rem 1rem; border-radius: 50px;
+      white-space: nowrap;
+    }
+    .paket-tier {
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(247,243,232,0.5);
+      margin-bottom: 0.8rem;
+    }
+    .paket-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; font-weight: 900; color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .paket-period { font-size: 0.85rem; color: rgba(247,243,232,0.5); margin-bottom: 1.5rem; }
+    .paket-features { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .paket-features li {
+      display: flex; gap: 0.7rem; font-size: 0.9rem;
+      color: rgba(247,243,232,0.8);
+    }
+    .paket-features li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .paket-btn {
+      display: block; text-align: center;
+      margin-top: 1.8rem;
+      padding: 0.8rem;
+      border-radius: 50px;
+      border: 1.5px solid rgba(247,243,232,0.3);
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.9rem; font-weight: 500;
+      transition: all 0.2s;
+    }
+    .paket-btn:hover { background: rgba(247,243,232,0.1); }
+    .paket-card.featured .paket-btn {
+      background: var(--gold); color: var(--brown); border-color: var(--gold);
+    }
+    .paket-card.featured .paket-btn:hover { background: #e0a52e; }
+
+    /* TESTIMONI */
+    .testimoni { background: var(--cream); }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .testi-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.8rem;
+    }
+    .testi-stars { color: var(--gold); font-size: 1rem; margin-bottom: 1rem; }
+    .testi-text {
+      font-size: 0.97rem; color: var(--text-muted);
+      line-height: 1.7; margin-bottom: 1.3rem;
+      font-style: italic;
+    }
+    .testi-author { display: flex; align-items: center; gap: 0.75rem; }
+    .testi-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--brown);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-weight: 700; font-size: 0.9rem;
+    }
+    .testi-name { font-weight: 500; font-size: 0.9rem; }
+    .testi-role { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* KONTAK */
+    .kontak {
+      background: var(--white);
+      text-align: center;
+    }
+    .kontak h2 { margin-bottom: 0.8rem; }
+    .kontak .section-desc { margin: 0 auto 2.5rem; }
+    .kontak-form {
+      max-width: 520px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+    input, textarea, select {
+      width: 100%;
+      padding: 0.85rem 1.1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      background: var(--cream);
+      color: var(--brown);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--gold); }
+    textarea { resize: vertical; min-height: 110px; }
+    .submit-btn {
+      background: var(--brown); color: var(--cream);
+      border: none; cursor: pointer;
+      padding: 1rem; border-radius: 50px;
+      font-size: 1rem; font-weight: 500;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.2s; width: 100%;
+    }
+    .submit-btn:hover { background: var(--gold); transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer {
+      background: var(--brown);
+      color: rgba(247,243,232,0.6);
+      padding: 3rem 5% 2rem;
+      display: flex;
+      justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 900; color: var(--cream);
+    }
+    .footer-logo span { color: var(--gold); }
+    footer p { font-size: 0.85rem; }
+
+    /* MOBILE NAV */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Juragan <span>Kentang</span></div>
+    <ul class="nav-links">
+      <li><a href="#why">Mengapa Kami</a></li>
+      <li><a href="#produk">Produk</a></li>
+      <li><a href="#peluang">Peluang</a></li>
+      <li><a href="#investasi">Investasi</a></li>
+    </ul>
+    <a href="#kontak" class="nav-cta">Hubungi Kami</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <svg class="hero-pattern" viewBox="0 0 400 400" fill="none">
+      <circle cx="200" cy="200" r="180" stroke="#3B2A14" stroke-width="1.5"/>
+      <circle cx="200" cy="200" r="140" stroke="#3B2A14" stroke-width="1.5"/>
+      <circle cx="200" cy="200" r="100" stroke="#3B2A14" stroke-width="1.5"/>
+      <circle cx="200" cy="200" r="60" stroke="#3B2A14" stroke-width="1.5"/>
+      <line x1="200" y1="20" x2="200" y2="380" stroke="#3B2A14" stroke-width="1"/>
+      <line x1="20" y1="200" x2="380" y2="200" stroke="#3B2A14" stroke-width="1"/>
+      <line x1="74" y1="74" x2="326" y2="326" stroke="#3B2A14" stroke-width="1"/>
+      <line x1="326" y1="74" x2="74" y2="326" stroke="#3B2A14" stroke-width="1"/>
+    </svg>
+    <div class="hero-content">
+      <div class="hero-badge">Agribisnis Terpercaya sejak 2019</div>
+      <h1>Investasi Cerdas di <em>Ladang Kentang</em> Terbaik</h1>
+      <p class="hero-sub">Juragan Kentang menghadirkan ekosistem agribisnis kentang premium dari hulu ke hilir. Bergabunglah bersama investor kami dan raih keuntungan dari sektor pangan yang terus tumbuh.</p>
+      <div class="hero-actions">
+        <a href="#investasi" class="btn-primary">Lihat Paket Investasi</a>
+        <a href="#peluang" class="btn-outline">Pelajari Peluangnya</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="stat-item">
+      <div class="stat-number">850+</div>
+      <div class="stat-label">Hektar Lahan Aktif</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">12 Ton</div>
+      <div class="stat-label">Panen per Hektar/Tahun</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">Rp 28M</div>
+      <div class="stat-label">Omset Tahun 2024</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">23%</div>
+      <div class="stat-label">ROI Rata-rata Investor</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">150+</div>
+      <div class="stat-label">Petani Mitra</div>
+    </div>
+  </div>
+
+  <!-- WHY -->
+  <section class="why" id="why">
+    <div class="section-label">Keunggulan Kami</div>
+    <h2>Mengapa Berinvestasi<br>di Juragan Kentang?</h2>
+    <p class="section-desc">Kami bukan sekadar petani kentang biasa. Kami membangun ekosistem agribisnis yang terintegrasi, transparan, dan menguntungkan semua pihak.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🌾</div>
+        <h3>Lahan Premium Bersertifikat</h3>
+        <p>Lahan di dataran tinggi Jawa Barat dengan ketinggian optimal 1.000–2.000 mdpl. Sertifikasi SOP pertanian modern dan bebas pestisida berbahaya.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📊</div>
+        <h3>Transparansi Penuh</h3>
+        <p>Investor mendapat laporan real-time melalui dashboard digital. Setiap siklus panen terdokumentasi mulai dari tanam hingga distribusi.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <h3>Jaringan Distribusi Kuat</h3>
+        <p>Bermitra dengan supermarket nasional, restoran waralaba, dan eksportir. Jaminan offtake hingga 90% hasil panen setiap musim.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🌱</div>
+        <h3>Pertanian Berkelanjutan</h3>
+        <p>Menerapkan teknologi pertanian presisi, irigasi tetes, dan pemupukan organik. Ramah lingkungan sekaligus menghasilkan kentang berkualitas ekspor.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💰</div>
+        <h3>ROI Kompetitif</h3>
+        <p>Rata-rata 23% per tahun berdasarkan track record 5 tahun terakhir. Pembagian hasil dilakukan setiap akhir siklus panen (4 bulan sekali).</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🛡️</div>
+        <h3>Perlindungan Investasi</h3>
+        <p>Asuransi panen melalui AUTP (Asuransi Usaha Tani Padi). MoU resmi & notaris. Investasi terlindungi dari risiko gagal panen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUK -->
+  <section class="products" id="produk">
+    <div class="section-label">Lini Produk</div>
+    <h2>Ragam Produk<br>Unggulan Kami</h2>
+    <p class="section-desc">Dari kentang segar premium hingga produk olahan siap konsumsi, kami menggarap seluruh rantai nilai produk kentang Indonesia.</p>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img p1">🥔</div>
+        <div class="product-info">
+          <h3>Kentang Segar Premium</h3>
+          <p>Varietas Granola & Atlantic, cocok untuk konsumsi dan industri pengolahan. Grading A/B sesuai standar ekspor.</p>
+          <span class="product-tag">Ekspor Ready</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img p2">🍟</div>
+        <div class="product-info">
+          <h3>Kentang Olahan Beku</h3>
+          <p>French fries, hash brown, dan wedges beku untuk segmen B2B restoran dan fast food chain nasional.</p>
+          <span class="product-tag">B2B Supply</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img p3">🌿</div>
+        <div class="product-info">
+          <h3>Kentang Organik</h3>
+          <p>Ditanam tanpa pupuk kimia sintetis. Tersertifikasi organik SNI. Menjawab tren pasar konsumen health-conscious.</p>
+          <span class="product-tag">SNI Certified</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img p4">🥗</div>
+        <div class="product-info">
+          <h3>Bibit Kentang Unggul</h3>
+          <p>Penyedia bibit G0–G4 hasil kerjasama riset dengan Balitsa. Mendukung program ketahanan pangan nasional.</p>
+          <span class="product-tag">Program Nasional</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PELUANG -->
+  <section class="peluang" id="peluang">
+    <div class="section-label">Analisis Pasar</div>
+    <h2>Peluang Pasar<br>yang Terus Tumbuh</h2>
+    <div class="peluang-layout">
+      <div class="peluang-visual">
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem; font-weight:500;">Pertumbuhan Permintaan Kentang Indonesia</p>
+        <div class="bar-chart">
+          <div class="bar-row">
+            <div class="bar-label"><span>2021</span><strong>580.000 ton</strong></div>
+            <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label"><span>2022</span><strong>650.000 ton</strong></div>
+            <div class="bar-track"><div class="bar-fill" style="width:67%"></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label"><span>2023</span><strong>720.000 ton</strong></div>
+            <div class="bar-track"><div class="bar-fill" style="width:75%"></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label"><span>2024</span><strong>810.000 ton</strong></div>
+            <div class="bar-track"><div class="bar-fill" style="width:84%"></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label"><span>2025*</span><strong>950.000 ton</strong></div>
+            <div class="bar-track"><div class="bar-fill" style="width:98%; background:var(--green)"></div></div>
+          </div>
+        </div>
+        <p style="font-size:0.75rem; color:var(--text-muted); margin-top:1rem;">*Proyeksi. Sumber: Kementan RI</p>
+      </div>
+      <div class="peluang-points">
+        <div class="peluang-point">
+          <div class="point-dot"></div>
+          <div class="point-text">
+            <h4>Defisit Produksi Nasional</h4>
+            <p>Indonesia masih mengimpor 30% kebutuhan kentang olahannya. Pasar domestik belum terpenuhi sepenuhnya — peluang emas bagi produsen lokal.</p>
+          </div>
+        </div>
+        <div class="peluang-point">
+          <div class="point-dot"></div>
+          <div class="point-text">
+            <h4>Tren Fast Food & Industri F&B</h4>
+            <p>Pertumbuhan industri makanan cepat saji 14% per tahun mendorong permintaan kentang olahan secara masif dan konsisten.</p>
+          </div>
+        </div>
+        <div class="peluang-point">
+          <div class="point-dot"></div>
+          <div class="point-text">
+            <h4>Dukungan Program Pemerintah</h4>
+            <p>Kementan RI mendukung agribisnis kentang melalui subsidi benih, akses KUR, dan program substitusi impor pangan.</p>
+          </div>
+        </div>
+        <div class="peluang-point">
+          <div class="point-dot"></div>
+          <div class="point-text">
+            <h4>Peluang Ekspor ASEAN</h4>
+            <p>Permintaan dari Malaysia, Singapura, dan Brunei terus meningkat. Kami sedang dalam proses sertifikasi ekspor ke pasar ASEAN.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVESTASI -->
+  <section class="investasi" id="investasi">
+    <div class="section-label">Paket Investasi</div>
+    <h2>Pilih Paket<br>yang Sesuai</h2>
+    <p class="section-desc">Investasi fleksibel dengan minimum yang terjangkau. Setiap paket dilindungi perjanjian notarial dan laporan berkala.</p>
+    <div class="paket-grid">
+      <div class="paket-card">
+        <div class="paket-tier">Starter</div>
+        <div class="paket-price">Rp 10 Jt</div>
+        <div class="paket-period">Minimum investasi</div>
+        <ul class="paket-features">
+          <li>ROI estimasi 18–20%/tahun</li>
+          <li>Pembagian hasil per panen (4 bulan)</li>
+          <li>Laporan digital bulanan</li>
+          <li>Kunjungan lahan 1x/tahun</li>
+          <li>Asuransi panen dasar</li>
+        </ul>
+        <a href="#kontak" class="paket-btn">Mulai Investasi</a>
+      </div>
+      <div class="paket-card featured">
+        <div class="featured-badge">⭐ Paling Populer</div>
+        <div class="paket-tier">Growth</div>
+        <div class="paket-price">Rp 50 Jt</div>
+        <div class="paket-period">Minimum investasi</div>
+        <ul class="paket-features">
+          <li>ROI estimasi 22–25%/tahun</li>
+          <li>Pembagian hasil per panen (4 bulan)</li>
+          <li>Dashboard real-time investor</li>
+          <li>Kunjungan lahan unlimited</li>
+          <li>Asuransi panen premium</li>
+          <li>Konsultasi agronomi langsung</li>
+        </ul>
+        <a href="#kontak" class="paket-btn">Mulai Investasi</a>
+      </div>
+      <div class="paket-card">
+        <div class="paket-tier">Enterprise</div>
+        <div class="paket-price">Custom</div>
+        <div class="paket-period">Skala besar / kemitraan institusi</div>
+        <ul class="paket-features">
+          <li>ROI negosiasi sesuai portofolio</li>
+          <li>Kepemilikan lahan virtual (blok)</li>
+          <li>Laporan keuangan audited</li>
+          <li>Tim manajemen dedicated</li>
+          <li>Hak distribusi eksklusif area</li>
+          <li>Equity sharing tersedia</li>
+        </ul>
+        <a href="#kontak" class="paket-btn">Hubungi Tim Kami</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONI -->
+  <section class="testimoni" id="testimoni">
+    <div class="section-label">Kata Mereka</div>
+    <h2>Investor yang Sudah<br>Mempercayai Kami</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Saya skeptis awalnya, tapi setelah melihat laporan transparan dan kunjungan langsung ke lahan, langsung yakin. ROI-nya memang nyata, bukan janji-janji belaka."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AR</div>
+          <div>
+            <div class="testi-name">Andika Rahmat</div>
+            <div class="testi-role">Investor sejak 2021 · Bandung</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Investasi saya di Juragan Kentang sudah menghasilkan 3 kali lipat dalam 4 tahun. Sektor agrikultur ternyata jauh lebih menjanjikan dari yang saya bayangkan."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SW</div>
+          <div>
+            <div class="testi-name">Siti Wahyuni</div>
+            <div class="testi-role">Investor Growth · Jakarta</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Sebagai pelaku bisnis F&B, saya bergabung untuk menjamin pasokan bahan baku sekaligus mendapat return investasi. Win-win solution yang belum pernah saya temukan sebelumnya."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">BP</div>
+          <div>
+            <div class="testi-name">Budi Prasetyo</div>
+            <div class="testi-role">Pengusaha Restoran · Surabaya</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAK -->
+  <section class="kontak" id="kontak">
+    <div class="section-label">Hubungi Kami</div>
+    <h2>Siap Bergabung?</h2>
+    <p class="section-desc">Tim kami siap mendampingi Anda memilih paket investasi yang paling tepat. Konsultasi pertama gratis tanpa komitmen.</p>
+    <form class="kontak-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <input type="text" placeholder="Nama Lengkap" required />
+        <input type="tel" placeholder="No. WhatsApp" required />
+      </div>
+      <input type="email" placeholder="Alamat Email" required />
+      <select>
+        <option value="" disabled selected>Paket yang diminati</option>
+        <option>Starter – Rp 10 Juta</option>
+        <option>Growth – Rp 50 Juta</option>
+        <option>Enterprise – Custom</option>
+      </select>
+      <textarea placeholder="Pertanyaan atau pesan Anda..."></textarea>
+      <button type="submit" class="submit-btn">Kirim & Konsultasi Gratis</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="footer-logo">Juragan <span>Kentang</span></div>
+      <p style="margin-top:0.4rem; font-size:0.82rem;">Agribisnis Kentang Premium Indonesia</p>
+    </div>
+    <p>© 2025 Juragan Kentang. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.submit-btn');
+      btn.textContent = '✓ Terima kasih! Kami akan segera menghubungi Anda.';
+      btn.style.background = '#3A6B35';
+      btn.disabled = true;
+    }
+
+    // Simple scroll animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) {
+          el.target.style.opacity = '1';
+          el.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.why-card, .product-card, .paket-card, .testi-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
